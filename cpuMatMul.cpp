@@ -3,7 +3,7 @@
 #include <chrono>
 #include <iostream>
 
-#define WIDTH 64  // Ends up being squared for the proper calculation (e.g. SIZE 4 means 4x4 matrices)
+#define WIDTH 512  // Ends up being squared for the proper calculation (e.g. SIZE 4 means 4x4 matrices)
 #define RUNS 100
 
 // function to calculate the scan on GPU
@@ -23,7 +23,7 @@ void matmul(float *M, float *N, float *P, int width){
 
 int main() {
   int SIZE = WIDTH*WIDTH; // compatibility with ported code from scan. since matrices are being initialized as 1D arrays, need a single size var. i'd prefer 2D. just sayin'
-  std::cout << "\n" << SIZE; // record the size of the run for data collection
+  std::cout << "\n" << SIZE << ","; // record the size of the run for data collection
 
   // allocate input and output arrays
   float* M, *N, *P;
