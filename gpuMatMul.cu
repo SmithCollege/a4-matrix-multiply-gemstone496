@@ -4,7 +4,7 @@
 #include <chrono>
 #include <iostream>
 
-#define WIDTH 64  // Ends up being squared for the proper calculation (e.g. SIZE 4 means 4x4 matrices)
+#define WIDTH 1024  // Ends up being squared for the proper calculation (e.g. SIZE 4 means 4x4 matrices)
 #define TILE_WIDTH 16
 #define RUNS 100
 
@@ -26,7 +26,7 @@ __global__ void matmul(float *M, float *N, float *P, int width){
 
 int main() {
   int SIZE = WIDTH*WIDTH; // compatibility with ported code from scan. since matrices are being initialized as 1D arrays, need a single size var. i'd prefer 2D. just sayin'
-  std::cout << "\n" << SIZE << ","; // record the size of the run for data collection
+  std::cout << "\n" << SIZE; // record the size of the run for data collection
   
   // allocate input and output arrays
   float *M, *d_M, *N, *d_N, *P, *d_P;
@@ -56,7 +56,7 @@ int main() {
     cudaDeviceSynchronize(); // patience, girls
     const auto end{std::chrono::steady_clock::now()};
     const std::chrono::duration<double> elapsed{end - start};
-    std::cout << elapsed.count() << "\n";
+    std::cout << "," << elapsed.count();
 
     // this isn't really part of the operation of matmul so she doesn't get timed. i know. she's missing out. it's ok though, she's not competitive.
     cudaMemcpy(P, d_P, SIZE*sizeof(float), cudaMemcpyDeviceToHost);
