@@ -4,9 +4,9 @@
 #include <chrono>
 #include <iostream>
 
-#define WIDTH 64  // Ends up being squared for the proper calculation (e.g. SIZE 4 means 4x4 matrices)
+#define WIDTH 512  // Ends up being squared for the proper calculation (e.g. SIZE 4 means 4x4 matrices)
 #define TILE_WIDTH 16
-#define RUNS 1
+#define RUNS 100
 
 // function to calculate the scan on GPU
 __global__ void matmul(float *M, float *N, float *P, int width){
