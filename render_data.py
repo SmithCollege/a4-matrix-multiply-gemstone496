@@ -37,7 +37,9 @@ times  = pd.melt(times, id_vars=['run', 'size'], var_name='method', value_name='
 print(times)
 
 # Create graph
-plot = sns.lmplot(data=times, x='size', y='time', hue='method').set(xscale='log', yscale='log')
+plot = sns.scatterplot(data=times, x='size', y='time', hue='method')
+plt.xscale('log')
+plt.yscale('log')
 
 # Export graph
 plt.savefig("timers.png")
